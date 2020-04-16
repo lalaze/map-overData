@@ -5,7 +5,7 @@ const path = require("path");
 module.exports = {
     entry : "./src/entry.js",//入口文件
     output : {//输出文件
-        filename : 'map-overData.js',//输出文件名
+        filename : 'mapData.js',//输出文件名
         // path : __dirname + '/dist'//输出文件路径
         path:path.resolve(__dirname,"dist"),
     },
@@ -37,6 +37,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './test/index.html',
             filename: 'index.html', //打包后的文件名
+            inject:'head',
             minify: {
                 removeAttributeQuotes: false, //是否删除属性的双引号
                 collapseWhitespace: false, //是否折叠空白
@@ -45,11 +46,11 @@ module.exports = {
         })
     ],
     devServer: {
+        // publicPath: path.resolve(__dirname,"dist"),
+        open: true,
+        // openPage: '/dist/index',
         before (app) {
           apiMocker(app, path.resolve('./mock/mocker.js'))
         }
     },
-    externals: {
-        jquery: 'jQuery'
-    }
 }
