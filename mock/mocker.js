@@ -23,8 +23,8 @@ const proxy = {
       res.send({ status: 'ok', message: '删除成功！' })
     },
     'GET /api/pointData': [
-      {id:'1',longitude:'113.293976',latitude:'22.817083'},
-      {id:'2',longitude:'113.285824',latitude:'22.826194'}
+      {id:'1',lon:'113.293976',lat:'22.817083'},
+      {id:'2',lon:'113.285824',lat:'22.826194'}
     ]
   }
 

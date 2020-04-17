@@ -2,23 +2,23 @@ import { Point } from './point'
 import { ListEachCallback } from '../utils'
 
 class PointDraw {
-    constructor (map,data,ctx) {
+    constructor (map,data,ctx,width,height) {
         this.map = map
-        this.bindEvent();
-        this.dataSet = initData(data)
-        this.ctx
+        // this.bindEvent();
+        this.dataSet = this.initData(data)
+        this.ctx = ctx
+        this.width = width
+        this.height = height
         // 变化的时候放旧数据的
         // this.oldDataSet = []
+        this.render()
     }
 
     initData (data)　{
+        
         let dataSet = []
         ListEachCallback(data,(item,index)=> {
-            dataSet.push(new Point ({
-                id:item.id,
-                lon:item.lon,
-                lat:item.lat
-            }))
+            dataSet.push(new Point (item.id,item.lon,item.lat))
         })
         return dataSet
     }
@@ -26,25 +26,28 @@ class PointDraw {
     bindEvent () {
         var self = this;
         map.addEventListener('mousemove', function (e) {
+            console.log('0.0')
             var cursor = 'default';
-            self.dataSet.each(function (i, data) {
-                var result = Math.sqrt(Math.pow(e.clientX - data.x, 2) + Math.pow(e.clientY - data.y, 2)) <= 5;
+            ListEachCallback(self.dataSet,(item,index)=> {
+                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 5;
+                console.log('0.0')
                 if (result) {
                     console.log('事件')
                     cursor = 'pointer';
                     return false;
                 }
-            });
+            })
             map.setDefaultCursor(cursor);
         });
         map.addEventListener('mousedown', function (e) {
-            paint.dataSet.each(function (i, data) {
-                var result = Math.sqrt(Math.pow(e.clientX - data.x, 2) + Math.pow(e.clientY - data.y, 2)) <= 5;
+            ListEachCallback(self.dataSet,(item,index)=> {
+                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 5;
+                console.log('0.0')
                 if (result) {
                     console.log('事件')
                     return false;
                 }
-            });
+            })
         });
     }
 
@@ -55,15 +58,13 @@ class PointDraw {
     draw ()　{
         // this.oldDataSet = []
         // ------------------------
-        let self = this.ctx
+        let self = this
         ListEachCallback(this.dataSet,(item,index)=> {
-            ctx.save();
+            self.ctx.save();
             item.draw(self.ctx, item.x, item.y);
-            ctx.restore();
+            self.ctx.restore();
         })
     }
 }
 
-export {
-    PointDraw
-}
+export  default PointDraw

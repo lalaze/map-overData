@@ -1,6 +1,6 @@
 //entry.js
 
-import { PointDraw } from './point/pointDraw'
+import  Draw  from './draw'
 
 class MapData {
 
@@ -28,6 +28,10 @@ class MapData {
             var center = map.getCenter();
             map.setCenter(center);
         });
+         //隐藏所有兴趣点，方便画图
+        map.setMapStyle({
+            styleId: '75e6bbd3eb890ad0d54760c200146b9d'
+        });
 
         this.type = type
         this.map = map
@@ -36,11 +40,9 @@ class MapData {
     }
 
     render () {
-
         if (this.type === 'point') {
-            this.map.addOverlay(new PointDraw(this.map,this.data));
+            this.map.addOverlay(new Draw(this.type,this.map,this.data));
         }
-
     }
 
 }

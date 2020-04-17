@@ -3,7 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const apiMocker = require('mocker-api');
 const path = require("path");
 module.exports = {
-    entry : "./src/entry.js",//入口文件
+    // entry : "./entry.js",//入口文件
+    entry:path.resolve(__dirname,"src/entry.js"),
     output : {//输出文件
         filename : 'mapData.js',//输出文件名
         // path : __dirname + '/dist'//输出文件路径
@@ -35,7 +36,7 @@ module.exports = {
     plugins: [
         //数组 放着所有的webpack插件
         new HtmlWebpackPlugin({
-            template: './test/index.html',
+            template: path.resolve(__dirname,"test/index.html"),
             filename: 'index.html', //打包后的文件名
             inject:'head',
             minify: {
