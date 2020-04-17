@@ -4,7 +4,7 @@ import { ListEachCallback } from '../utils'
 class PointDraw {
     constructor (map,data,ctx,width,height) {
         this.map = map
-        // this.bindEvent();
+        this.bindEvent();
         this.dataSet = this.initData(data)
         this.ctx = ctx
         this.width = width
@@ -26,13 +26,11 @@ class PointDraw {
     bindEvent () {
         var self = this;
         map.addEventListener('mousemove', function (e) {
-            console.log('0.0')
             var cursor = 'default';
             ListEachCallback(self.dataSet,(item,index)=> {
-                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 5;
-                console.log('0.0')
+                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 10;
                 if (result) {
-                    console.log('事件')
+                    console.log('移动事件')
                     cursor = 'pointer';
                     return false;
                 }
@@ -41,8 +39,7 @@ class PointDraw {
         });
         map.addEventListener('mousedown', function (e) {
             ListEachCallback(self.dataSet,(item,index)=> {
-                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 5;
-                console.log('0.0')
+                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 10
                 if (result) {
                     console.log('事件')
                     return false;

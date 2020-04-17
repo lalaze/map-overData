@@ -34,8 +34,16 @@
 
         map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 
+        // $.ajax({
+        //     url: '/api/pointData',
+        //     success: function (res) {
+        //         var mapData = new MapData('point', map, res)
+        //         mapData.render()
+        //     }
+        // })
+
         $.ajax({
-            url: '/api/pointData',
+            url: 'http://localhost:8080/lapi/data',
             success: function (res) {
                 var mapData = new MapData('point', map, res)
                 mapData.render()
