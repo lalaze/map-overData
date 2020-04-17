@@ -49,6 +49,7 @@ module.exports = {
         // publicPath: path.resolve(__dirname,"dist"),
         open: true,
         // openPage: '/dist/index',
+        port:2333,
         before (app) {
           apiMocker(app, path.resolve('./mock/mocker.js'))
         }
