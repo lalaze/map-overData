@@ -5,6 +5,12 @@ let ListEachCallback = (list,callback) => {
     });
 }
 
+let Event = (list,callback) => {
+    list.forEach((item,index) => {
+        callback(item,index)
+    });
+}
+
 export {
-    ListEachCallback
+    ListEachCallback,Event
 }

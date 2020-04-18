@@ -1,14 +1,16 @@
 import { Point } from './point'
-import { ListEachCallback } from '../utils'
+import { ListEachCallback,Event } from '../utils'
 
 class PointDraw {
-    constructor (map,data,ctx,width,height) {
+    constructor (map,data,ctx,width,height,clickCallback,imageSrc) {
         this.map = map
-        this.bindEvent();
+        this.bindEvent()
         this.dataSet = this.initData(data)
         this.ctx = ctx
         this.width = width
         this.height = height
+        this.clickCallback = clickCallback 
+        this.imageSrc = imageSrc
         // 变化的时候放旧数据的
         // this.oldDataSet = []
         this.render()
@@ -17,35 +19,37 @@ class PointDraw {
     initData (data)　{
         
         let dataSet = []
+        let self = this
         ListEachCallback(data,(item,index)=> {
             dataSet.push(new Point (item.id,item.lon,item.lat))
         })
         return dataSet
+
     }
 
     bindEvent () {
-        var self = this;
+        let self = this
         map.addEventListener('mousemove', function (e) {
-            var cursor = 'default';
+            let cursor = 'default'
             ListEachCallback(self.dataSet,(item,index)=> {
-                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 10;
+                let option = self.imageSrc ? 25 : 10
+                let result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= option
                 if (result) {
-                    console.log('移动事件')
-                    cursor = 'pointer';
-                    return false;
+                    cursor = 'pointer'
+                    return false
                 }
             })
-            map.setDefaultCursor(cursor);
-        });
+            map.setDefaultCursor(cursor)
+        })
         map.addEventListener('mousedown', function (e) {
             ListEachCallback(self.dataSet,(item,index)=> {
-                var result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= 10
-                if (result) {
-                    console.log('事件')
-                    return false;
+                let option = self.imageSrc ? 25 : 10
+                let result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= option
+                if (result ) {
+                   self.clickCallback(item,self.map)
                 }
             })
-        });
+        })
     }
 
     render () {
@@ -56,11 +60,21 @@ class PointDraw {
         // this.oldDataSet = []
         // ------------------------
         let self = this
-        ListEachCallback(this.dataSet,(item,index)=> {
-            self.ctx.save();
-            item.draw(self.ctx, item.x, item.y);
-            self.ctx.restore();
-        })
+        let imgObj = new Image()
+        if (self.imageSrc) {
+            imgObj.src = self.imageSrc
+            imgObj.onload = function(){
+                ListEachCallback(self.dataSet,(item,index)=> {
+                    item.drawImg(self.ctx, item.x, item.y,imgObj)
+                })
+            }
+        } else {
+            ListEachCallback(self.dataSet,(item,index)=> {
+                self.ctx.save()
+                item.draw(self.ctx, item.x, item.y)
+                self.ctx.restore()
+            })
+        }
     }
 }
 

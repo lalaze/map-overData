@@ -30,7 +30,7 @@
         // map.centerAndZoom("顺德", 12);
         map.centerAndZoom(new BMap.Point(113.300251, 22.810862), 13);
 
-       
+
 
         map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 
@@ -46,7 +46,27 @@
             url: 'http://localhost:8080/lapi/data',
             success: function (res) {
                 var mapData = new MapData('point', map, res)
+                mapData.click(function (item, map) {
+
+                    var point = new BMap.Point(item.lon, item.lat);
+                    var marker = new BMap.Marker(point);
+                    $.ajax({
+                        url: 'http://localhost:8080/mapi/clickData?id='+item.id,
+                        type: 'get',
+                        success: function (res) {
+
+                            console.log(res)
+                            var sContent = res.data.data;
+                            var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象
+                            map.openInfoWindow(infoWindow, point); //开启信息窗口
+
+                        }
+                    })
+
+                })
+                mapData.setImage("https://s1.ax1x.com/2020/04/17/JZku8K.png")
                 mapData.render()
+
             }
         })
     </script>

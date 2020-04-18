@@ -4,7 +4,7 @@ import  Draw  from './draw'
 
 class MapData {
 
-    constructor(type, map, data) {
+    constructor(type, map, data,png) {
         // 一长串参数检查
         let canvas = document.createElement('canvas')
         if (!(canvas.getContext)) {
@@ -40,9 +40,19 @@ class MapData {
     }
 
     render () {
+
         if (this.type === 'point') {
-            this.map.addOverlay(new Draw(this.type,this.map,this.data));
+            this.map.addOverlay(new Draw(this.type,this.map,this.data,this.callback,this.imageSrc));
         }
+
+    }
+
+    click(callback) {
+        this.callback = callback
+    }
+
+    setImage(src) {
+        this.imageSrc = src
     }
 
 }

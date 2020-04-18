@@ -4,7 +4,7 @@ import { ListEachCallback } from './utils'
 // 这里只能用函数写法，因为我们的方法是重新定义在他百度地图的类上面的
 // 而他上面是一个对象，不能使用class的继承写法
 
-function Draw (type,map,data)  {
+function Draw (type,map,data,clickcallback,imageSrc)  {
     this.type = type
     this.map = map
     this.data = data
@@ -13,6 +13,8 @@ function Draw (type,map,data)  {
     this.pointDraw = ''
     // 当前实例的ctx
     this.ctx = ''
+    this.clickcallback = clickcallback ? clickcallback : ''
+    this.imageSrc = imageSrc ? imageSrc : ''
 } 
 
 Draw.prototype = new BMap.Overlay() 
@@ -27,7 +29,7 @@ Draw.prototype.initialize = function () {
     canvas.style.left = 0
 
     this.ctx = canvas.getContext('2d')
-    this.pointDraw = new PointDraw(this.map,this.data,this.ctx,canvas.width,canvas.height)
+    this.pointDraw = new PointDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.clickcallback,this.imageSrc)
     this.map.getPanes().labelPane.appendChild(canvas)
 }
 
@@ -44,6 +46,7 @@ Draw.prototype.draw = function ()  {
 
     // 地图变化的时候的核心数据处理
     let self = this
+    
     ListEachCallback(this.pointDraw.dataSet,(item,index)=> {
         let px = self.map.pointToOverlayPixel(new BMap.Point(item.lon, item.lat));
         item.x = px.x - py.x;
