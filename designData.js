@@ -18,6 +18,12 @@ var dData = {
         // 不用发请求，直接四个点
         [{longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'},
         {longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'}],
+
+        [{longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'},
+        {longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'}],
+        
+        [{longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'},
+        {longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'}],
         // ...
     ],
 }

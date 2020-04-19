@@ -14,7 +14,7 @@ class MapData {
         } else if (!(type && map && data)) {
             throw new TypeError('缺少参数或参数为空，请检查！', "mapData.js", 8) 
         } else if (type !== 'polygon' && type !== 'point') {
-            throw new TypeError('不是指定的类型！', "mapData.js", 10) 
+            throw new TypeError('不是支持的类型！', "mapData.js", 10) 
         } else if (!map.getMapType()) {
             throw new TypeError('没有百度地图实例！', "mapData.js", 10) 
         } else if (!$) {
@@ -22,28 +22,29 @@ class MapData {
         } 
         
         // 设置地图的一些默认属性
-        map.setDraggingCursor('default');
-        map.setDefaultCursor("default");
+        map.setDraggingCursor('default')
+        map.setDefaultCursor("default")
         map.addEventListener('resize', function () {
-            var center = map.getCenter();
-            map.setCenter(center);
-        });
+            var center = map.getCenter()
+            map.setCenter(center)
+        })
          //隐藏所有兴趣点，方便画图
         map.setMapStyle({
             styleId: '75e6bbd3eb890ad0d54760c200146b9d'
-        });
+        })
 
         this.type = type
         this.map = map
         this.data = data
+        //  缓存 
+        this.cache = []       
 
     }
 
     render () {
-
-        if (this.type === 'point') {
-            this.map.addOverlay(new Draw(this.type,this.map,this.data,this.callback,this.imageSrc));
-        }
+        let example = new Draw(this.type,this.map,this.data,this.callback,this.imageSrc)
+        this.cache.push(example)
+        this.map.addOverlay(example)
 
     }
 
@@ -57,6 +58,6 @@ class MapData {
 
 }
 
-;! function (win) {
+! function (win) {
     win.MapData = MapData
-}(window);
+}(window)

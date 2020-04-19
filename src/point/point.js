@@ -26,6 +26,7 @@ class Point {
         context.drawImage(imageObj, x, y, 16, 16);
 
     }
+    
 }
 
 export {Point}

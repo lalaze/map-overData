@@ -1,5 +1,5 @@
 import { Point } from './point'
-import { ListEachCallback,Event } from '../utils'
+import { ListEachCallback } from '../utils'
 
 class PointDraw {
     constructor (map,data,ctx,width,height,clickCallback,imageSrc) {
