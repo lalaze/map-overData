@@ -5,6 +5,7 @@ import  Draw  from './draw'
 class MapData {
 
     constructor(type, map, data,png) {
+        
         // 一长串参数检查
         let canvas = document.createElement('canvas')
         if (!(canvas.getContext)) {
@@ -33,31 +34,70 @@ class MapData {
             styleId: '75e6bbd3eb890ad0d54760c200146b9d'
         })
 
-        this.type = type
+       
         this.map = map
+        
+        this.type = type
         this.data = data
+        
         //  缓存 
         this.cache = []       
 
     }
 
     render () {
+        
         let example = new Draw(this.type,this.map,this.data,this.callback,this.imageSrc)
-        this.cache.push(example)
+      
         this.map.addOverlay(example)
 
     }
 
     click(callback) {
+
         this.callback = callback
+
     }
 
     setImage(src) {
+
         this.imageSrc = src
+    }
+
+    creatDraw(type,data) {
+        let example = new Draw(type,this.map)
+        this.cache.push(example)
+
+        return example
+
+    }
+
+    switchCanvas() {
+        let index = ''
+        win.MapDataCanvas.forEach((item,i)=> {
+            if (item.style.display === 'none'){
+              index = i
+            }
+        })
+        if (index) {
+            if (index == win.MapDataCanvas.length) {
+                win.MapDataCanvas[index].style.display = ''
+                win.MapDataCanvas[0].style.display = 'none'
+            } else {
+                win.MapDataCanvas[index].style.display = ''
+                win.MapDataCanvas[index+1].style.display = 'none'
+            }
+            
+        } else {
+            win.MapDataCanvas[0].style.display = 'none'
+        }
     }
 
 }
 
 ! function (win) {
     win.MapData = MapData
+
+    // 缓存win的画布的、
+    win.MapDataCanvas = []
 }(window)

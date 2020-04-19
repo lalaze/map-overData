@@ -25,6 +25,9 @@ Draw.prototype.initialize = function () {
 
     let canvas = document.createElement('canvas')
 
+    // 缓存
+    window.MapDataCanvas.push(canvas)
+
     canvas.width   = this.map.getSize().width
     canvas.height  = this.map.getSize().height
     canvas.style.position = 'absolute'
