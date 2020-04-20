@@ -4,15 +4,13 @@ import { ListEachCallback } from '../utils'
 class PointDraw {
     constructor (map,data,ctx,width,height,clickCallback,imageSrc) {
         this.map = map
-        this.bindEvent()
         this.dataSet = this.initData(data)
         this.ctx = ctx
         this.width = width
         this.height = height
         this.clickCallback = clickCallback 
         this.imageSrc = imageSrc
-        // 变化的时候放旧数据的
-        // this.oldDataSet = []
+        this.bindEvent()
         this.render()
     }
 
@@ -29,10 +27,11 @@ class PointDraw {
 
     bindEvent () {
         let self = this
-        map.addEventListener('mousemove', function (e) {
+        self.map.addEventListener('mousemove', function (e) {
             let cursor = 'default'
             ListEachCallback(self.dataSet,(item,index)=> {
-                let option = self.imageSrc ? 25 : 10
+                // let option = self.imageSrc ? 25 : 10
+                let option = 16
                 let result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= option
                 if (result) {
                     cursor = 'pointer'
@@ -41,11 +40,17 @@ class PointDraw {
             })
             map.setDefaultCursor(cursor)
         })
-        map.addEventListener('mousedown', function (e) {
+        self.map.addEventListener('mousedown', function (e) {
             ListEachCallback(self.dataSet,(item,index)=> {
-                let option = self.imageSrc ? 25 : 10
+                // let option = self.imageSrc ? 25 : 10
+                let option = 16 
+
+                // 地图上的事件点击点与图标点有差别
+                // x差10 的样子，y差30的样子，目前不知道原因，手动给他修复
+                // 是因为他上部有元素！！！！canvas定位的时候拿的位置与地图不符合
+                
                 let result = Math.sqrt(Math.pow(e.clientX - item.x, 2) + Math.pow(e.clientY - item.y, 2)) <= option
-                if (result ) {
+                if (result) {
                    self.clickCallback(item,self.map)
                 }
             })

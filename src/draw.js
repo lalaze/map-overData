@@ -5,7 +5,7 @@ import { ListEachCallback } from './utils'
 // 这里只能用函数写法，因为我们的方法是重新定义在他百度地图的类上面的
 // 而他上面是一个对象，不能使用class的继承写法
 
-function Draw (type,map,data,clickcallback,imageSrc)  {
+function Draw (type,map,data,id)  {
     this.type = type
     this.map = map
     this.data = data
@@ -14,19 +14,28 @@ function Draw (type,map,data,clickcallback,imageSrc)  {
     this.pointDraw = ''
     this.polygonDraw = ''
     // 当前实例的ctx
+    this.canvas = ''
     this.ctx = ''
-    this.clickcallback = clickcallback ? clickcallback : ''
-    this.imageSrc = imageSrc ? imageSrc : ''
+    this.clickcallback = ''
+    this.imageSrc = ''
+
+    this.id = id ? id:''
 } 
 
 Draw.prototype = new BMap.Overlay() 
 
+Draw.prototype.click = function (callback) {
+    this.clickcallback = callback
+}
+
+Draw.prototype.icon = function(url) {
+    this.imageSrc = url
+}
+
 Draw.prototype.initialize = function () {
 
     let canvas = document.createElement('canvas')
-
-    // 缓存
-    window.MapDataCanvas.push(canvas)
+    this.canvas = canvas
 
     canvas.width   = this.map.getSize().width
     canvas.height  = this.map.getSize().height
