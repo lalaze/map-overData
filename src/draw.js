@@ -61,10 +61,7 @@ Draw.prototype.draw = function ()  {
     let ne = bounds.getNorthEast()
     let py = this.map.pointToOverlayPixel(new BMap.Point(sw.lng, ne.lat)) //经纬度转成屏幕坐标
     this.ctx.canvas.style.left = py.x + 'px'
-    this.ctx.canvas.style.top = py.y + 'px'
-    
-    
-   
+    this.ctx.canvas.style.top = py.y + 'px'  
 
     // 地图变化的时候的核心数据处理
     let self = this
@@ -73,7 +70,7 @@ Draw.prototype.draw = function ()  {
         this.ctx.clearRect(0, 0, this.pointDraw.width, this.pointDraw.height)
         this.pointDraw.zoom = this.map.getZoom
         ListEachCallback(this.pointDraw.dataSet,(item,index)=> {
-            let px = self.map.pointToOverlayPixel(new BMap.Point(item.lon, item.lat))
+            let px = self.map.pointToOverlayPixel(new BMap.Point(item.longitude, item.latitude))
             item.x = px.x - py.x
             item.y = px.y - py.y
         })
@@ -83,15 +80,13 @@ Draw.prototype.draw = function ()  {
         this.polygonDraw.zoom = this.map.getZoom
         ListEachCallback(this.polygonDraw.dataList,(item,index)=> {
             ListEachCallback(item.dataList,(item,index)=>{
-                let px = self.map.pointToOverlayPixel(new BMap.Point(item.lon, item.lat))
+                let px = self.map.pointToOverlayPixel(new BMap.Point(item.longitude, item.latitude))
                 item.x = px.x - py.x
                 item.y = px.y - py.y
             })
         })
         this.polygonDraw.render()
     }
-    
-    
 
 }
 

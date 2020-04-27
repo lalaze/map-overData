@@ -1,12 +1,13 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const apiMocker = require('mocker-api');
 const path = require("path");
 module.exports = {
     // entry : "./entry.js",//入口文件
     entry:path.resolve(__dirname,"src/entry.js"),
     output : {//输出文件
-        filename : 'mapData.js',//输出文件名
+        filename : 'mapdata.js',//输出文件名
         // path : __dirname + '/dist'//输出文件路径
         path:path.resolve(__dirname,"dist"),
     },
@@ -32,7 +33,7 @@ module.exports = {
             }
         ]
     },
-    mode: "development",
+    mode: "production",
     plugins: [
         //数组 放着所有的webpack插件
         new HtmlWebpackPlugin({
@@ -44,7 +45,8 @@ module.exports = {
                 collapseWhitespace: false, //是否折叠空白
             },
             // hash: true //是否加上hash，默认是 false
-        })
+        }),
+        // new UglifyJsPlugin()
     ],
     devServer: {
         // publicPath: path.resolve(__dirname,"dist"),

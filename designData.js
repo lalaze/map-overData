@@ -14,19 +14,28 @@ var pData = {
 // 电子围栏的数据格式
 var dData = {
     // 。。。。一些响应状态参数等
-    "data" : [
-        // 不用发请求，直接四个点
-        [{longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'},
-        {longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'}],
-
-        [{longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'},
-        {longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'}],
-        
-        [{longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'},
-        {longitude:'115.....',latitude:'11.26666'},{longitude:'115.....',latitude:'11.26666'}],
-        // ...
-    ],
+    "data" : [{
+        "id": "1",      //  工地id  或者啥的  
+        "longitude": "113.303037",    //根据下面四个点算出来的
+        "latitude": "22.76938",
+        //  计算方法， 第一、三点的经纬度加起来除2
+        "list": [{
+            "longitude": "113.302037",
+            "latitude": "22.77038"
+        }, {
+            "longitude": "113.304037",
+            "latitude": "22.77038"
+        }, {
+            "longitude": "113.304037",
+            "latitude": "22.76838"
+        }, {
+            "longitude": "113.302037",
+            "latitude": "22.76838"
+        }]
+    }] 
 }
+
+
 
 // 车辆的数据格式
 var cData = {

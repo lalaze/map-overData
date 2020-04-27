@@ -17,6 +17,7 @@
     "html-webpack-plugin": "^4.2.0",
     "mocker-api": "^2.0.3",
     "mockjs": "^1.1.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
