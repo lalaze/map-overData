@@ -25,11 +25,6 @@ class MapData {
             var center = map.getCenter()
             map.setCenter(center)
         })
-         //隐藏所有兴趣点，方便画图
-        // map.setMapStyle({
-        //     styleId: '75e6bbd3eb890ad0d54760c200146b9d'
-        // })
-
        
         this.map = map
         

@@ -5,7 +5,6 @@ let ListEachCallback = (list,callback) => {
     });
 }
 
-
 export {
     ListEachCallback
 }

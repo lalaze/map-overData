@@ -19,7 +19,7 @@ class PointDraw {
         let dataSet = []
         let self = this
         ListEachCallback(data,(item,index)=> {
-            dataSet.push(new Point (item.id,item.lon,item.lat))
+            dataSet.push(new Point (item.id,item.longitude,item.latitude))
         })
         return dataSet
 

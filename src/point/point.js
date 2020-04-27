@@ -3,8 +3,8 @@ class Point {
     constructor (id,lon,lat) {
         
         this.id = id
-        this.lon = lon
-        this.lat = lat
+        this.longitude = lon
+        this.latitude = lat
 
     }
 
