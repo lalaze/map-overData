@@ -18,18 +18,27 @@ function Draw (type,map,data,id)  {
     this.ctx = ''
     this.clickcallback = ''
     this.imageSrc = ''
-
-    this.id = id ? id:''
+    this.id = id?id : ''
+    
 } 
 
 Draw.prototype = new BMap.Overlay() 
 
 Draw.prototype.click = function (callback) {
-    this.clickcallback = callback
+    this.clickcallback= callback
 }
 
 Draw.prototype.icon = function(url) {
     this.imageSrc = url
+}
+
+Draw.prototype.style = function(style) {
+    this.style = style
+}
+
+// 缩放事件接口
+Draw.prototype.zoom = function(callback) {
+    this.zoomcallback = callback
 }
 
 Draw.prototype.initialize = function () {
@@ -45,9 +54,11 @@ Draw.prototype.initialize = function () {
 
     this.ctx = canvas.getContext('2d')
     if (this.type == "point") {
-        this.pointDraw = new PointDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.clickcallback,this.imageSrc)
+        this.pointDraw = new PointDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.clickcallback,this.imageSrc,this.style,this.zoomcallback)
+
     } else if (this.type == "polygon") { 
-        this.polygonDraw = new PolygonDraw(this.data,this.ctx,canvas.width,canvas.height)
+        this.polygonDraw = new PolygonDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.style,this.zoomcallback)
+
     }
     
     this.map.getPanes().labelPane.appendChild(canvas)

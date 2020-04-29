@@ -6,11 +6,11 @@
 
 目前效果就只有两种
 
-![JlHkNV.png](https://s1.ax1x.com/2020/04/20/JlHkNV.png)
+![JlHkNV.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/JlTXQJ.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156491&Signature=yDUpom6NpxH3X7xLFMN%2BGzBPiWY%3D)
 
 可以看到是画图标与画多变形，这里是取随机数，所以有点乱问题不大，同时还有点击事件
 
-![JlqHB9.png](https://s1.ax1x.com/2020/04/20/JlqHB9.png)
+![JlqHB9.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/JlqHB9.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156518&Signature=emY%2B%2Fui8sbF7NaHn7IYDAQVAi4c%3D)
 
 完整例子在test文件夹
 
@@ -72,7 +72,7 @@ var mapData = new MapData(map) // 创建实例
 
 感觉是不是很简单呢(并不)
 
-![JlTXQJ.png](https://s1.ax1x.com/2020/04/20/JlTXQJ.png)
+![JlTXQJ.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/JlHP7q.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156596&Signature=BB1E%2F9PTSonY05roUPBvkImavYM%3D)
 
 ## api
 
@@ -139,7 +139,7 @@ example1.icon("https://s1.ax1x.com/2020/04/17/JZku8K.png")
 console.log(mapData)
 ```
 
-[![J19BaF.png](https://s1.ax1x.com/2020/04/20/J19BaF.png)](https://imgchr.com/i/J19BaF)
+[![J19BaF.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/J19BaF.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156647&Signature=gvnyc9Wq4PHeCkLFHnYwPc0Xmio%3D)](https://imgchr.com/i/J19BaF)
 
 ## 后续要完善的功能
 

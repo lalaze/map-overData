@@ -6,10 +6,11 @@ class Polygon {
         this.dataList = dataList
     }
     
-    draw (context,listData) {
+    draw (context,listData,style) {
 
         context.beginPath()
-        context.strokeStyle ="#ea86c2"
+        context.strokeStyle = style.color ? style.color : "#c9d0de"
+        context.lineWidth = style.width ? style.width : 1
 
         ListEachCallback(listData,(item,index)=> {
             if (index == 0) {
