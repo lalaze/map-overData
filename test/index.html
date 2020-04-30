@@ -50,24 +50,20 @@
             url: 'http://localhost:8080/lapi/data1',
             success: function (res) {
 
-
                 var example1 = mapData.createDraw('point', res, 'cheche')
 
                 example1.click(function (item, map) {
-
-                    // var point = new BMap.Point(item.lon, item.lat);
-                    // var marker = new BMap.Marker(point);
-                    // $.ajax({
-                    //     url: 'http://localhost:8080/mapi/clickData?id=' + item.id,
-                    //     type: 'get',
-                    //     success: function (res) {
-                    //         var sContent = res.data.data;
-                    //         var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象
-                    //         map.openInfoWindow(infoWindow, point); //开启信息窗口
-                    //     }
-                    // })
-                    console.log('点击1')
-
+                    var point = new BMap.Point(item.lon, item.lat);
+                    var marker = new BMap.Marker(point);
+                    $.ajax({
+                        url: 'http://localhost:8080/mapi/clickData?id=' + item.id,
+                        type: 'get',
+                        success: function (res) {
+                            var sContent = res.data.data;
+                            var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象
+                            map.openInfoWindow(infoWindow, point); //开启信息窗口
+                        }
+                    })
                 })
                 example1.icon("https://s1.ax1x.com/2020/04/17/JZku8K.png")
                 mapData.render(example1)
