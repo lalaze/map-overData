@@ -147,9 +147,9 @@ console.log(mapData)
 
 ```javascript
 example2.style({
-                    color: 'blue',
-                    width: 5
-                })
+    color: 'blue',
+    width: 5
+})
 ```
 不过目前支持的样式自定义太少了，后面需求在加吧
 
