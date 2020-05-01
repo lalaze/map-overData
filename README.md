@@ -141,7 +141,15 @@ console.log(mapData)
 
 [![J19BaF.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/J19BaF.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156647&Signature=gvnyc9Wq4PHeCkLFHnYwPc0Xmio%3D)](https://imgchr.com/i/J19BaF)
 
-## 后续要完善的功能
+## 画笔自定义study
 
-- 搜索显示入口
-- 画笔样式自定义接口
+这个功能还是比较常用的，因为是canvas，可以进行各种操作，留一个自定义的接口还是很必要的很必要的
+
+```javascript
+example2.style({
+                    color: 'blue',
+                    width: 5
+                })
+```
+不过目前支持的样式自定义太少了，后面需求在加吧
+
