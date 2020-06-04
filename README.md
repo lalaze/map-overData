@@ -1,16 +1,20 @@
 # map-overData
 
+## 项目地址
+
+>https://github.com/lalaze/map-overData
+
 ## 介绍
 
 这个东西主要是为了往百度地图上画东西，要求大量数据不要卡，所以写了
 
 目前效果就只有两种
 
-![JlHkNV.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/JlTXQJ.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156491&Signature=yDUpom6NpxH3X7xLFMN%2BGzBPiWY%3D)
+![JlHkNV.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/map-overdata/JlTXQJ.png)
 
 可以看到是画图标与画多边形，这里是取随机数，所以有点乱问题不大，同时还有点击事件
 
-![JlqHB9.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/JlqHB9.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156518&Signature=emY%2B%2Fui8sbF7NaHn7IYDAQVAi4c%3D)
+![JlqHB9.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/map-overdata/JlqHB9.png)
 
 完整例子在test文件夹
 
@@ -72,7 +76,7 @@ var mapData = new MapData(map) // 创建实例
 
 感觉是不是很简单呢(并不)
 
-![JlTXQJ.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/JlHP7q.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156596&Signature=BB1E%2F9PTSonY05roUPBvkImavYM%3D)
+![JlTXQJ.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/map-overdata/JlHP7q.png)
 
 至于这个性能指标，目前测试2w个点，1w个围栏的速度是1.5s，算能用吧
 
@@ -146,7 +150,7 @@ example3.icon({url:"https://s1.ax1x.com/2020/05/07/YZnivD.png",
 console.log(mapData)
 ```
 
-[![J19BaF.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/J19BaF.png?OSSAccessKeyId=LTAI4GCeVHegRoadhkK6mc12&Expires=1588156647&Signature=gvnyc9Wq4PHeCkLFHnYwPc0Xmio%3D)](https://imgchr.com/i/J19BaF)
+[![J19BaF.png](http://zezeze-note.oss-cn-hongkong.aliyuncs.com/%E7%AC%94%E8%AE%B0%E6%88%AA%E5%9B%BE/map-overdata/J19BaF.png)](https://imgchr.com/i/J19BaF)
 
 ## 画笔自定义study
 
@@ -158,8 +162,8 @@ example2.style({
     width: 5
 })
 ```
+
 ## 有待修改的点
+
 - 目前支持的样式自定义太少了，后面需求在加吧
 - 加入根据点画轨迹的功能，可以有行进动画
-
-
