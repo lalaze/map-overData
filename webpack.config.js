@@ -7,7 +7,7 @@ module.exports = {
     // entry : "./entry.js",//入口文件
     entry:path.resolve(__dirname,"src/entry.js"),
     output : {//输出文件
-        filename : 'mapdata.js',//输出文件名
+        filename : 'mapData.js',//输出文件名
         // path : __dirname + '/dist'//输出文件路径
         path:path.resolve(__dirname,"dist"),
     },

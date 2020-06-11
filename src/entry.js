@@ -82,21 +82,27 @@ class MapData {
         })
     }
 
-    swidthCanvasById(id) {
-        this.cache.forEach((item,i)=> {
-            if (item.id == id) {
-                if (this.cache[i].canvas.style.visibility == 'hidden') {
-                    this.cache[i].canvas.style.visibility = 'visible'
-                }else {
-                    this.cache[i].canvas.style.visibility = 'hidden'
+    swidthCanvasById(id,type) {  // type 为visible或者hidden、
+        if (type) {
+            this.cache.forEach((item,i)=> {
+                if (item.id == id) {
+                    this.cache[i].canvas.style.visibility = type
                 }
-            }
-        })
+            })
+
+        } else {
+            this.cache.forEach((item,i)=> {
+                if (item.id == id) {
+                    if (this.cache[i].canvas.style.visibility == 'hidden') {
+                        this.cache[i].canvas.style.visibility = 'visible'
+                    }else {
+                        this.cache[i].canvas.style.visibility = 'hidden'
+                    }
+                }
+            })
+        }
     }
-
-
 }
-
 ! function (win) {
     win.MapData = MapData
 }(window)

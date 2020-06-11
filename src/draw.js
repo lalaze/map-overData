@@ -5,6 +5,17 @@ import { ListEachCallback } from './utils'
 // 这里只能用函数写法，因为我们的方法是重新定义在他百度地图的类上面的
 // 而他上面是一个对象，不能使用class的继承写法
 
+// function getPixelRatio(context) {
+//     var backingStore = context.backingStorePixelRatio ||
+//         context.webkitBackingStorePixelRatio ||
+//         context.mozBackingStorePixelRatio ||
+//         context.msBackingStorePixelRatio ||
+//         context.oBackingStorePixelRatio ||
+//         context.backingStorePixelRatio || 1;
+//     return (window.devicePixelRatio || 1) / backingStore;
+// };
+
+
 function Draw (type,map,data,id)  {
     this.type = type
     this.map = map
@@ -17,9 +28,8 @@ function Draw (type,map,data,id)  {
     this.canvas = ''
     this.ctx = ''
     this.clickcallback = ''
-    this.imageSrc = ''
-    this.id = id?id : ''
-    
+    this.imageSrcObj = {}
+    this.id = id?id : ''  
 } 
 
 Draw.prototype = new BMap.Overlay() 
@@ -28,8 +38,8 @@ Draw.prototype.click = function (callback) {
     this.clickcallback= callback
 }
 
-Draw.prototype.icon = function(url) {
-    this.imageSrc = url
+Draw.prototype.icon = function(obj) {
+    this.imageSrcObj = obj
 }
 
 Draw.prototype.style = function(style) {
@@ -46,19 +56,24 @@ Draw.prototype.initialize = function () {
     let canvas = document.createElement('canvas')
     this.canvas = canvas
 
+    // let ratio = getPixelRatio(ctx)  
+
+    //  解决图标模糊问题
     canvas.width   = this.map.getSize().width
     canvas.height  = this.map.getSize().height
+    // canvas.width   = this.map.getSize().width*ratio
+    // canvas.height  = this.map.getSize().height*ratio
+    // let divWidth = 300 * ratio; // 用于内容居中
+    // let divHeight = 300 * ratio; // 用于内容居中
     canvas.style.position = 'absolute'
     canvas.style.top = 0
     canvas.style.left = 0
-
     this.ctx = canvas.getContext('2d')
+    
     if (this.type == "point") {
-        this.pointDraw = new PointDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.clickcallback,this.imageSrc,this.style,this.zoomcallback)
-
+        this.pointDraw = new PointDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.clickcallback,this.imageSrcObj,this.style,this.zoomcallback)
     } else if (this.type == "polygon") { 
         this.polygonDraw = new PolygonDraw(this.map,this.data,this.ctx,canvas.width,canvas.height,this.style,this.zoomcallback)
-
     }
     
     this.map.getPanes().labelPane.appendChild(canvas)
@@ -98,7 +113,6 @@ Draw.prototype.draw = function ()  {
         })
         this.polygonDraw.render()
     }
-
 }
 
 export default Draw

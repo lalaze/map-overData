@@ -24,10 +24,12 @@ class Point {
     }
 
     drawImg (context,x,y,imageObj) {
-        context.drawImage(imageObj, x, y, 16, 16);
-
+        if (imageObj.url) {
+            let width = imageObj.width ? imageObj.width : 16
+            let height = imageObj.height ? imageObj.height : 16
+            context.drawImage(imageObj.imgObj, x -width/2, y-height/2, width, height)
+        }
     }
-    
 }
 
 export {Point}
